@@ -59,15 +59,15 @@ def move():
     ontimer(move, 100)
 
 
-def movefood():
-    n=random.choice((1,2,3,4))
-    if n==1:
+def movefood(): #Se agrega una funcion que mueve la comida en 4 posibles direcciones 
+    position=random.choice((1,2,3,4)) #Donde "1" es derecha, "2" es izquierda, "3" es arriba y "4" es abajo
+    if position==1:
         food.x= food.x+10
-    elif n==2:
+    elif position==2:
         food.x= food.x-10
-    elif n==3:
+    elif position==3:
         food.y= food.x+10
-    elif n==4:
+    elif position==4:
         food.y= food.x-10
     ontimer(movefood,200)
 
