@@ -10,17 +10,11 @@ food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
 
+colors  = ["green","blue","orange","purple","black"] #Generamos una lista con 5 posibles colores
+color_snake = random.choice(colors) #Seleccion aleatoria de un color de la lista mediante random.choice
+colors.remove(color_snake) #Quitamos el color seleccionado para la serpiete para evitar que sea el mismo para la comida
+color_food = random.choice(colors) #Seleccion aleatoria de un color de la lista mediante random.choice
 
-color=random.choice(['Orange', 'green', 'blue', 'black', 'Yellow'])
-color2=random.choice(['Orange', 'green', 'blue', 'black', 'Yellow'])
-def chqueocolores(color, color2):
-    if color==color2:
-        color=random.choice(['Orange', 'green', 'blue', 'black', 'Yellow'])
-        color2=random.choice(['Orange', 'green', 'blue', 'black', 'Yellow'])
-        chqueocolores(color,color2)
-        return(color, color2)
-    else:
-        return(color, color2)
 
 def change(x, y):
     "Change snake direction."
@@ -51,39 +45,31 @@ def move():
     if head == food: #Cuando se come las cosas
         print('Snake:', len(snake))# Imprime el largo de la serpiente
 
-        des=random.choice(["uno", "dos", "tres", "Cuatro"])
-        if des=="uno":
-            for i in range(5):
-                food.x=food.x+i
-        elif des=="dos":
-            for i in range(5):
-                food.x=food.x-i  
-        elif des=="tres":
-            for i in range(5):
-                food.x=food.y-i  
-        elif des=="Cuatro":
-            for i in range(5):
-                food.x=food.y-i 
-
-
         food.x = randrange(-15, 15) * 10
         food.y = randrange(-15, 15) * 10
-
-       
-
     else:
         snake.pop(0)
-
     clear()
 
+
     for body in snake:
-        square(body.x, body.y, 9, color)
-    square(food.x, food.y, 9, color2)
+        square(body.x, body.y, 9, color_snake)
+    square(food.x, food.y, 9, color_food)
     update()
     ontimer(move, 100)
 
-    
 
+def movefood():
+    n=random.choice((1,2,3,4))
+    if n==1:
+        food.x= food.x+10
+    elif n==2:
+        food.x= food.x-10
+    elif n==3:
+        food.y= food.x+10
+    elif n==4:
+        food.y= food.x-10
+    ontimer(movefood,200)
 
 
 
@@ -99,4 +85,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+movefood()
 done()
