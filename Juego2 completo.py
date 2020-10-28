@@ -1,4 +1,4 @@
-# Juego2 comida mov..py
+# Juego2 completo.py
 # Ivan Alvarez y Jesus Daniel
 # Juego de la Víbora
 from turtle import *
@@ -60,16 +60,17 @@ def move():
 
 
 def movefood():
-    n=random.choice((1,2,3,4))
-    if n==1:
-        food.x= food.x+10
-    elif n==2:
-        food.x= food.x-10
-    elif n==3:
-        food.y= food.x+10
-    elif n==4:
-        food.y= food.x-10
-    ontimer(movefood,200)
+    if -200 < food.x < 190 and -200 < food.y < 190:
+        n=random.choice((1,2,3,4))
+        if n==1:
+            food.x= food.x+10
+        elif n==2:
+            food.x= food.x-10
+        elif n==3:
+            food.y= food.x+10
+        elif n==4:
+            food.y= food.x-10
+        ontimer(movefood,200)
 
 
 
